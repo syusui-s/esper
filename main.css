@@ -1,0 +1,62 @@
+* { padding: 0; margin: 0; }
+
+html {
+  background-color: #fff;
+}
+
+body {
+  font-size: 16px;
+  color: #3B3B3B;
+  width: 860px;
+  margin: auto;
+  padding: 32px 64px;
+  box-sizing: content-box;
+  box-shadow: #999 0 0 10px;
+  font-family: sans-serif;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: bold;
+}
+
+h1 { font-size: 32px; margin-bottom: 16px; }
+h2 { font-size: 24px; }
+h3 { font-size: 19px; }
+h4 { font-size: inherit; }
+
+ul, ol {
+  margin-left: 20px;
+}
+
+p, ul, ol, dl {
+  margin-top: 10px;
+  margin-bottom: 16px;
+  line-height: 23px;
+}
+
+dt { font-weight: bold; }
+dd { margin-left: 40px; }
+
+.vocabularies {
+  border: 1px solid #999;
+  border-radius: 3px 3px;
+  padding: 5px;
+  margin: 5px;
+}
+
+.vocabularies {
+  word-spacing: 1em;
+  border: 1px solid #AAA;
+  padding: 5px 10px;
+}
+
+.vocabulary {
+}
+
+.vocabulary--typed {
+  color: #AAA;
+}
+
+.settings__selected-keyboard-layouts, .settings__keyboard-layouts {
+  min-width: 100px;
+}
