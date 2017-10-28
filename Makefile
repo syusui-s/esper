@@ -1,6 +1,6 @@
 SCRIPTS := $(shell find . -name "*.mjs" -print)
 
-.PHONY: test doc
+.PHONY: test doc clean
 
 all: test doc
 
@@ -9,3 +9,6 @@ test: $(SCRIPTS)
 
 doc: $(SCRIPTS)
 	jsdoc -c ./jsdoc.json .
+
+clean:
+	$(RM) doc/*.html
