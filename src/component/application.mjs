@@ -2,8 +2,8 @@
 
 import { Emitter, Component } from '../lib/flux.mjs';
  
-import TypingAction from './../actions/typing_action.mjs';
-import SettingsAction from './../actions/settings_action.mjs';
+import TypingAction from './../action/typing_action.mjs';
+import SettingsAction from './../action/settings_action.mjs';
 
 import TypingStore from './../store/typing_store.mjs';
 import SettingsStore from './../store/settings_store.mjs';
