@@ -1,3 +1,5 @@
+/** @module lib/flux */
+
 export class Emitter {
   constructor() {
     this.handlers = new Map();

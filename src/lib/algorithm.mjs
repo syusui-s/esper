@@ -1,3 +1,5 @@
+/** @module lib/algorithm  */
+
 export class Enum {
   constructor(set) {
     for (let entry of set) {

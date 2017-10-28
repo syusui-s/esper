@@ -1,3 +1,5 @@
+/** @module component/application */
+
 import { Emitter, Component } from '../lib/flux.mjs';
  
 import TypingAction from './../actions/typing_action.mjs';

@@ -1,3 +1,5 @@
+/** @module store/settings_store */
+
 import { Emitter } from '../lib/flux.mjs';
 
 export default class SettingsStore extends Emitter {

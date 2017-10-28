@@ -1,3 +1,5 @@
+/** @module store/typing_store */
+
 import { Emitter } from '../lib/flux.mjs';
 import { KeyEvent } from '../model/keyboard.mjs';
 import { Vocabularies, Vocabulary } from '../model/vocabulary.mjs';

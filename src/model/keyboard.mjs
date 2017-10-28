@@ -1,3 +1,5 @@
+/** @module model/keyboard */
+
 import { Enum } from '../lib/algorithm.mjs';
 
 /**

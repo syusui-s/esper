@@ -1,3 +1,5 @@
+/** @module action/settings_action */
+
 import { Action } from '../lib/flux.mjs';
 
 export default class SettingsAction extends Action {

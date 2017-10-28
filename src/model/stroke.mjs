@@ -1,3 +1,5 @@
+/** @module model/stroke */
+
 import { DecisionTree } from '../lib/algorithm.mjs'
 
 /**

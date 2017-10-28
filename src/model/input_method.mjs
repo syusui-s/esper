@@ -1,3 +1,5 @@
+/** @module model/input_method */
+
 /**
  * 入力方式
  *
@@ -11,19 +13,30 @@ class InputMethod {
   constructor(name, characterTypes) {
     this.name = name;
     this.characterTypes = characterTypes;
+
+    this.reset();
   }
 
+  /**
+   * 全ての状態を初期化する
+   */
   reset() {
     this.resetOutput();
   }
 
   /**
-   * 出力をリセット
+   * 出力を初期化する
    */
   resetOutput() {
     this.output = '';
   }
 
+  /**
+   * 出力文字列に文字列を追加する
+   *
+   * @param {string} output 追加したい文字列
+   * @return {undefined}
+   */
   addOutput(output) {
     this.output += output;
   }

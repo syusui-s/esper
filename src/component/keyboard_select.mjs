@@ -1,3 +1,5 @@
+/** @module component/keyboard_select */
+
 import { Component } from '../lib/flux.mjs';
 
 export default class KeyboardSelectComponent extends Component {

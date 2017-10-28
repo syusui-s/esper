@@ -1,3 +1,5 @@
+/** @module model/vocabulary */
+
 import { Enum } from '../lib/algorithm.mjs';
 
 /**

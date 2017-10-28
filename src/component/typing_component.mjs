@@ -1,3 +1,5 @@
+/** @module component/typing_component */
+
 import { Component } from '../lib/flux.mjs';
 
 export default class TypingComponent extends Component {
