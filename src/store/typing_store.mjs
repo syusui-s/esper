@@ -3,7 +3,7 @@
 import { Emitter } from '../lib/flux.mjs';
 import { KeyEvent } from '../model/keyboard.mjs';
 import { Vocabularies, Vocabulary } from '../model/vocabulary.mjs';
-import { Layouts } from '../model/keyboard_map.mjs'
+import KeyboardMapsConfig from '../conf/keyboard_map.mjs';
 
 /**
  * タイピングに関わる処理全般の状態を保持する
@@ -33,7 +33,8 @@ export default class TypingStore extends Emitter {
 
     this.vocabularies = undefined;
 
-    this.layout = Layouts["Dvorak JP106"];
+    console.log(KeyboardMapsConfig.findById("dvorak_jp106"));
+    this.layout = KeyboardMapsConfig.findById("dvorak_jp106");
   }
 
   onKeyboardEvent(keyboardEvent) {
@@ -52,13 +53,11 @@ export default class TypingStore extends Emitter {
     }
 
     if (this.isStarted()) {
-      this.emit({ type: 'change' });
-      return;
-    }
-
-    {
       const character = this.layout.getCharacter(keyEvent);
       console.log(character);
+
+      this.emit({ type: 'change' });
+      return;
     }
   }
 
