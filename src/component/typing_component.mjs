@@ -7,7 +7,7 @@ export default class TypingComponent extends Component {
     super(actions);
 
     window.addEventListener('keydown',
-      ev => this.actions.TypingAction.keyboardEvent(ev));
+      (ev) => this.actions.TypingAction.keyboardEvent(ev));
   }
 
   template(props) {
@@ -17,7 +17,7 @@ export default class TypingComponent extends Component {
         <div class="vocabularies"></div>
       </div>
     `;
-    const message = props.isCounting ? props.count : props.isStopped ? "Enter押下で開始" : "開始！";
+    const message = props.isCounting ? props.count : props.isStopped ? 'Enter押下で開始' : '開始！';
     html.querySelector('.typing__message').textContent = message;
 
     const vocabularies = props.vocabularies || [];
@@ -33,7 +33,7 @@ export default class TypingComponent extends Component {
     const vocabulariesElement = html.querySelector('.vocabularies');
     vocabularieElements.forEach((elem) => {
       vocabulariesElement.appendChild(elem);
-      vocabulariesElement.appendChild(document.createTextNode(" "));
+      vocabulariesElement.appendChild(document.createTextNode(' '));
     });
 
     return html;

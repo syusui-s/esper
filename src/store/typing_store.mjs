@@ -14,7 +14,7 @@ export default class TypingStore extends Emitter {
 
     this.reset();
 
-    emitter.on('KeyboardEvent', action => this.onKeyboardEvent(action));
+    emitter.on('KeyboardEvent', (action) => this.onKeyboardEvent(action));
   }
 
   /**
@@ -33,8 +33,8 @@ export default class TypingStore extends Emitter {
 
     this.vocabularies = undefined;
 
-    console.log(KeyboardMapsConfig.findById("dvorak_jp106"));
-    this.layout = KeyboardMapsConfig.findById("dvorak_jp106");
+    console.log(KeyboardMapsConfig.findById('dvorak_jp106'));
+    this.layout = KeyboardMapsConfig.findById('dvorak_jp106');
   }
 
   onKeyboardEvent(keyboardEvent) {
@@ -72,17 +72,17 @@ export default class TypingStore extends Emitter {
 
   start() {
     this.vocabularies = new Vocabularies([
-      Vocabulary.createKana("日本語", "にほんご"),
-      Vocabulary.createKana("入力", "にゅうりょく"),
-      Vocabulary.createKana("洗剤", "せんざい"),
-      Vocabulary.createKana("柔軟", "じゅうなん"),
-      Vocabulary.createKana("東海", "とうかい"),
-      Vocabulary.createKana("東海道", "とうかいどう"),
-      Vocabulary.createKana("新幹線", "しんかんせん"),
-      Vocabulary.createKana("電車", "でんしゃ"),
-      Vocabulary.createKana("牽制", "けんせい"),
-      Vocabulary.createKana("原子力", "げんしりょく"),
-      Vocabulary.createKana("協同", "きょうどう"),
+      Vocabulary.createKana('日本語', 'にほんご'),
+      Vocabulary.createKana('入力', 'にゅうりょく'),
+      Vocabulary.createKana('洗剤', 'せんざい'),
+      Vocabulary.createKana('柔軟', 'じゅうなん'),
+      Vocabulary.createKana('東海', 'とうかい'),
+      Vocabulary.createKana('東海道', 'とうかいどう'),
+      Vocabulary.createKana('新幹線', 'しんかんせん'),
+      Vocabulary.createKana('電車', 'でんしゃ'),
+      Vocabulary.createKana('牽制', 'けんせい'),
+      Vocabulary.createKana('原子力', 'げんしりょく'),
+      Vocabulary.createKana('協同', 'きょうどう'),
     ]);
     this.startTime = Date.now();
 
@@ -123,15 +123,15 @@ export default class TypingStore extends Emitter {
   }
 
   eventRequestsStart(keyEvent) {
-    return this.isStopped() && ! this.isCounting() && keyEvent.code === "Enter";
+    return this.isStopped() && ! this.isCounting() && keyEvent.code === 'Enter';
   }
 
   eventRequestsCancel(keyEvent) {
-    return ( this.isStarted() || this.isCounting() ) && keyEvent.code === "Escape";
+    return ( this.isStarted() || this.isCounting() ) && keyEvent.code === 'Escape';
   }
 
   getState() {
-    let { started, count, startTime, endTime, vocabularies } = this;
+    const { started, count, startTime, endTime, vocabularies } = this;
     return {
       started,
       count,

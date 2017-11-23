@@ -35,7 +35,7 @@ export class Emitter {
    * @param {Action} action アクション
    */
   emit(action) {
-    this.getHandlersByType(action.type).forEach(handler => handler(action));
+    this.getHandlersByType(action.type).forEach((handler) => handler(action));
   }
 
   /**
@@ -76,7 +76,7 @@ export class Component {
    * @param {store} store ストアのオブジェクト
    */
   subscribes(store) {
-    store.on('change', _ => { this.render(store.getState()) });
+    store.on('change', () => this.render(store.getState()));
   }
 
   /**
@@ -109,10 +109,10 @@ export class Component {
    * @param {Array} substitutions 置換に使われる値の配列
    */
   html(callSites, ...substitutions) {
-    const escapedSubstitutions = substitutions.map(value =>
-      value.toString().replace(/[&'`"<>]/g, match => ({
+    const escapedSubstitutions = substitutions.map((value) =>
+      value.toString().replace(/[&'`"<>]/g, (match) => ({
         '&': '&amp;',
-        "'": '&#x27;',
+        '\'': '&#x27;',
         '`': '&#x60;',
         '"': '&quot;',
         '<': '&lt;',

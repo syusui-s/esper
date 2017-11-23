@@ -5,7 +5,7 @@
  */
 export class Enum {
   constructor(set) {
-    for (let entry of set) {
+    for (const entry of set) {
       const entryStr = entry.toString();
       this[entryStr] = Symbol(entryStr);
     }
@@ -35,7 +35,7 @@ export class DecisionTree {
    * @param {object} object 挿入される値
    */
   insert(keys, object) {
-    const node = keys.reduce((node, key, index) => {
+    const node = keys.reduce((node, key) => {
       if (node.tree[key]) {
         return node.tree[key];
       } else {

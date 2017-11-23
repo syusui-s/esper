@@ -3,10 +3,6 @@
 import { Component } from '../lib/flux.mjs';
 
 export default class KeyboardSelectComponent extends Component {
-  constructor(actions) {
-    super(actions);
-  }
-
   template(props) {
     const html = this.html `
       <form class="settings">
@@ -23,16 +19,16 @@ export default class KeyboardSelectComponent extends Component {
     `;
 
     const keyboardMaps = html.querySelector('#keyboard-layouts');
-    props.keyboardMaps.forEach(layout =>
+    props.keyboardMaps.forEach((layout) =>
       keyboardMaps.appendChild(this.html `<option>${layout.name}</option>`)
     );
 
     const selectedKeyboardMaps = html.querySelector('#selected-keyboard-layouts');
-    props.selectedKeyboardMaps.forEach(layout =>
+    props.selectedKeyboardMaps.forEach((layout) =>
       selectedKeyboardMaps.appendChild(this.html `<option>${layout.name}</option>`)
     );
 
-    keyboardMaps.addEventListener('change', ev => this.actions.SettingsAction.selectedKeyboardMap(ev.target.value));
+    keyboardMaps.addEventListener('change', (ev) => this.actions.SettingsAction.selectedKeyboardMap(ev.target.value));
 
     return html;
   }

@@ -1,6 +1,6 @@
 /** @module model/stroke */
 
-import { DecisionTree } from '../lib/algorithm.mjs'
+import { DecisionTree } from '../lib/algorithm.mjs';
 
 /**
  * ローマ字テーブルのエントリ
@@ -25,7 +25,7 @@ export class StrokeTable {
   static fromString(str) {
     const map = {};
 
-    str.split(/[\r\n]+/).forEach(line => {
+    str.split(/[\r\n]+/).forEach((line) => {
       const [input, output, next] = line.split(/\t/);
       map[input] = new StrokeEntry(input, output, next);
     });
@@ -37,7 +37,7 @@ export class StrokeTable {
     this.decisionTree = new DecisionTree();
 
     for (const key in map) {
-      const keys = key.split("");
+      const keys = key.split('');
       const entry = map[key];
 
       this.decisionTree.insert(keys, entry);
@@ -45,7 +45,7 @@ export class StrokeTable {
   }
 
   get(input) {
-    return this.decisionTree.get(input.split(""));
+    return this.decisionTree.get(input.split(''));
   }
 }
 
@@ -61,11 +61,11 @@ export class StrokeState {
   }
 
   clearInput() {
-    this.input = "";
+    this.input = '';
   }
 
   clearOutput() {
-    this.output = "";
+    this.output = '';
   }
 
   reset() {
@@ -129,7 +129,7 @@ export class StrokeState {
 
   addOutput(output) {
     if (output == null) {
-      throw new Error("null-likeな値は追加できません");
+      throw new Error('null-likeな値は追加できません');
     }
 
     this.output += output;

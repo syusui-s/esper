@@ -30,7 +30,7 @@ export class Vocabulary {
   }
 
   static createLatin(text) {
-    return new this(VocabularyType.Latin, text, kana);
+    return new this(VocabularyType.Latin, text, text);
   }
 
   matchLength(rawText) {
