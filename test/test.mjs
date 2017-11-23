@@ -2,15 +2,25 @@ import { DecisionTree } from '../src/lib/algorithm.mjs'
 import { StrokeTable, StrokeEntry, StrokeState } from '../src/model/stroke.mjs'
 import { Vocabulary } from '../src/model/vocabulary.mjs'
 
-function assertEqual(actual, expected) {
-  if (actual !== expected) {
-    console.log(`actual: ${actual}, expected: ${expected}`)
-    console.log(new Error().stack);
-    console.log("-----------");
+class Test {
+  constructor() {
+    this.allPassed = true;
+  }
+
+  assertEqual(actual, expected) {
+    const equal = actual === expected;
+
+    if (! equal) {
+      console.log(`actual: ${actual}, expected: ${expected}`)
+      console.log(new Error().stack);
+      console.log("-----------");
+    }
+
+    this.allPassed = this.allPassed && equal;
   }
 }
 
-function testDecisionTree() {
+function testDecisionTree(assertEqual) {
   const decisionTree = new DecisionTree();
   decisionTree.insert(["a"], "あ");
   decisionTree.insert(["i"], "い");
@@ -27,7 +37,7 @@ function testDecisionTree() {
   assertEqual(decisionTree.get(["p", "y", "a"]).entry, "ぴゃ");
 }
 
-function testStrokeTable() {
+function testStrokeTable(assertEqual) {
   const strokeTable = StrokeTable.fromString("kna\tきゃ\ntt\tっ\tt");
 
   assertEqual(strokeTable.get("kna").entry.output, "きゃ");
@@ -35,7 +45,7 @@ function testStrokeTable() {
   assertEqual(strokeTable.get("tt").entry.next, "t");
 }
 
-function testStrokeState() {
+function testStrokeState(assertEqual) {
   const strokeTable = new StrokeTable({
     "ko":  new StrokeEntry("ko",  "こ"),
     "co":  new StrokeEntry("co",  "こ"),
@@ -60,7 +70,7 @@ function testStrokeState() {
 
 }
 
-function testVocabulary() {
+function testVocabulary(assertEqual) {
   const vocab = Vocabulary.createKana("こんにちは", "こんにちは");
 
   assertEqual(vocab.matchLeftLegth("あいうえお"), 5);
@@ -83,10 +93,13 @@ function testVocabulary() {
 }
 
 export default function test() {
-  testDecisionTree();
-  testStrokeTable();
-  testStrokeState();
-  testVocabulary();
+  const test = new Test;
+  const assertEqual = test.assertEqual.bind(test);
 
-  console.log("done");
+  testDecisionTree(assertEqual);
+  testStrokeTable(assertEqual);
+  testStrokeState(assertEqual);
+  testVocabulary(assertEqual);
+
+  return test.allPassed;
 }

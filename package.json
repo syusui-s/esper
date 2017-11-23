@@ -1,0 +1,28 @@
+{
+  "name": "esper",
+  "version": "1.0.0",
+  "description": "Typing software written in ECMAScript",
+  "directories": {
+    "doc": "doc",
+    "test": "test"
+  },
+  "scripts": {
+    "test": "node --experimental-modules ./test/exec.mjs",
+    "lint": "eslint src/**/*.mjs test/**/*.mjs",
+    "doc": "jsdoc -c ./jsdoc.json ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/syusui-s/esper.git"
+  },
+  "author": "Shusui Moyatani",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/syusui-s/esper/issues"
+  },
+  "homepage": "https://github.com/syusui-s/esper#readme",
+  "devDependencies": {
+    "eslint": "^4.11.0",
+    "jsdoc": "^3.5.5"
+  }
+}
