@@ -22,7 +22,7 @@
   },
   "homepage": "https://github.com/syusui-s/esper#readme",
   "devDependencies": {
-    "eslint": "^4.11.0",
+    "eslint": "^4.14.0",
     "jsdoc": "^3.5.5"
   }
 }
