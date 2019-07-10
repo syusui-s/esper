@@ -4,6 +4,10 @@
  * 入力方式
  *
  * 子クラスは、consumeメソッドを実装しなければならない。
+ *
+ * @type {InputMethod}
+ * @property {string} name
+ * @property {string} characterTypes 
  */
 class InputMethod {
   /**
