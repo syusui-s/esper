@@ -22,8 +22,8 @@
   },
   "homepage": "https://github.com/syusui-s/esper#readme",
   "devDependencies": {
-    "eslint": "^4.19.1",
-    "jsdoc": "^3.5.5",
-    "marked": "^0.3.19"
+    "eslint": "^6.0.1",
+    "jsdoc": "^3.6.2",
+    "marked": "^0.7.0"
   }
 }
