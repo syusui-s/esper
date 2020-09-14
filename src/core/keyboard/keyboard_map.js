@@ -1,22 +1,17 @@
-/** @module model/keyboard_map */
+import KeyEntry from './key_entry.js';
 
 /**
- * 特定のコードに対応するアルファベットや記号を表す
+  * @typedef {import('./key_event.js').default} KeyEvent
+  */
+
+/**
+ * キーの打鍵位置に対応する文字を返す
  */
-export class KeyEntry {
+export default class KeyboardMap {
   /**
-   * @param {String} code キーコード
-   * @param {Object} map 
+   * @param {string} name
+   * @param {{ [name: string]: { noShift: string, shift: string } }} map
    */
-  constructor(code, map) {
-    this.code = code;
-    this.map = map;
-  }
-}
-
-/**
- */
-export class KeyboardMap {
   static fromMap(name, map) {
     const mapConverted = new Map();
 
@@ -29,18 +24,30 @@ export class KeyboardMap {
     return new this(name, mapConverted);
   }
 
+  /**
+   * @param {string} name
+   * @param {Map<string, KeyEntry>} map
+   */
   constructor(name, map) {
     this.name = name;
     this.map = map;
   }
 
+  /**
+   * @param {KeyEvent} keyEvent
+   * @return {string | null}
+   */
   getCharacter(keyEvent) {
     const keyEntry = this.map.get(keyEvent.code);
 
+    if (!keyEntry) {
+      return null;
+    }
+
     if (keyEvent.modifiers.shiftKey) {
       return keyEntry.map.shift;
-    } else {
-      return keyEntry.map.noShift;
     }
+
+    return keyEntry.map.noShift;
   }
 }

@@ -1,63 +1,19 @@
-/** @module model/stroke */
-
-import { DecisionTree } from '../lib/algorithm.mjs';
-
 /**
- * ローマ字テーブルのエントリ
- */
-export class StrokeEntry {
-  /**
-   * @param {string} input  入力
-   * @param {string} output 出力
-   * @param {string} next   次の入力
-   */
-  constructor(input, output, next) {
-    this.input = input;
-    this.output = output;
-    this.next = next;
-  }
-}
-
-/**
- * Google IME互換のローマ字テーブル
- */
-export class StrokeTable {
-  static fromString(str) {
-    const map = {};
-
-    str.split(/[\r\n]+/).forEach((line) => {
-      const [input, output, next] = line.split(/\t/);
-      map[input] = new StrokeEntry(input, output, next);
-    });
-
-    return new StrokeTable(map);
-  }
-
-  constructor(map) {
-    this.decisionTree = new DecisionTree();
-
-    for (const key in map) {
-      const keys = key.split('');
-      const entry = map[key];
-
-      this.decisionTree.insert(keys, entry);
-    }
-  }
-
-  get(input) {
-    return this.decisionTree.get(input.split(''));
-  }
-}
+  * @typedef {import('./stroke_table.js').default} StrokeTable
+  */
 
 /**
  * ローマ字入力時のキーボードのストロークの状態を管理するサービス
- *
- * @param {StrokeTable} strokeTable 
  */
-export class StrokeState {
+export default class StrokeState {
+  /**
+   * @param {StrokeTable} strokeTable
+   */
   constructor(strokeTable) {
     this.strokeTable = strokeTable;
-    this.reset();
+    this.input = '';
+    this.output = '';
+    this.temporaryEntry = undefined;
   }
 
   clearInput() {
@@ -73,11 +29,16 @@ export class StrokeState {
     this.clearOutput();
   }
 
+  /**
+   * @param {string} character
+   * @return {boolean}
+   */
   addCharacter(character) {
     const currentInput = this.input + character;
     const node = this.strokeTable.get(currentInput);
 
-    if (! node || ! node.hasChilds() && ! node.hasEntry()) {
+    // Not Found
+    if (!node || !(node.hasChildren() || node.hasEntry())) {
       this.clearInput();
 
       if (this.temporaryEntry) {
@@ -89,13 +50,13 @@ export class StrokeState {
 
       if (this.strokeTable.get(character)) {
         return this.addCharacter(character);
-      } else {
-        return false;
       }
+      return false;
     }
 
-    if (! node.hasChilds() && node.hasEntry()) {
-      const entry = node.entry;
+    // Leaf
+    if (!node.hasChildren() && node.hasEntry()) {
+      const { entry } = node;
 
       this.addOutput(entry.output);
       this.clearInput();
@@ -105,14 +66,16 @@ export class StrokeState {
       return true;
     }
 
-    if (node.hasChilds() && ! node.hasEntry()) {
+    // Uncomplete Branch
+    if (node.hasChildren() && !node.hasEntry()) {
       this.addInput(character);
       this.temporaryEntry = undefined;
 
       return true;
     }
 
-    if (node.hasChilds() && node.hasEntry()) {
+    // Branch
+    if (node.hasChildren() && node.hasEntry()) {
       this.addInput(character);
       this.temporaryEntry = node.entry;
 
@@ -120,6 +83,9 @@ export class StrokeState {
     }
   }
 
+  /**
+   * @param {string} input
+   */
   addInput(input) {
     // dismiss when null-like object is passed
     if (input == null) { return; }
@@ -127,6 +93,9 @@ export class StrokeState {
     this.input += input;
   }
 
+  /**
+   * @param {string} output
+   */
   addOutput(output) {
     if (output == null) {
       throw new Error('null-likeな値は追加できません');
@@ -136,7 +105,7 @@ export class StrokeState {
   }
 
   takeOutput() {
-    const output = this.output;
+    const { output } = this;
     this.clearOutput();
 
     return output;

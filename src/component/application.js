@@ -1,15 +1,15 @@
 /** @module component/application */
 
-import { Emitter, Component } from '../lib/flux.mjs';
- 
-import TypingAction from './../action/typing_action.mjs';
-import SettingsAction from './../action/settings_action.mjs';
+import { Emitter, Component } from '../lib/flux.js';
 
-import TypingStore from './../store/typing_store.mjs';
-import SettingsStore from './../store/settings_store.mjs';
+import TypingAction from '../action/typing_action.js';
+import SettingsAction from '../action/settings_action.js';
 
-import TypingComponent from './../component/typing_component.mjs';
-import SettingsComponent from './../component/settings_component.mjs';
+import TypingStore from '../store/typing_store.js';
+import SettingsStore from '../store/settings_store.js';
+
+import TypingComponent from '../component/typing_component.js';
+import SettingsComponent from '../component/settings_component.js';
 
 /**
  * アプリケーションのコンテナ
@@ -32,7 +32,7 @@ export default class ApplicationContainer extends Component {
   }
 
   template() {
-    const html = this.html `
+    const html = this.html`
       <div class="main">
         <settings-component></settings-component>
         <typing-component></typing-component>

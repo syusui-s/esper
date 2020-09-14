@@ -2,8 +2,14 @@
   "name": "esper",
   "version": "1.0.0",
   "description": "Typing software written in ECMAScript",
+  "author": "Shusui Moyatani",
+  "license": "AGPL-3.0-or-later",
+  "private": true,
+  "bugs": {
+    "url": "https://github.com/syusui-s/esper/issues"
+  },
+  "homepage": "https://github.com/syusui-s/esper#readme",
   "directories": {
-    "doc": "doc",
     "test": "test"
   },
   "scripts": {
@@ -15,16 +21,13 @@
     "type": "git",
     "url": "git+https://github.com/syusui-s/esper.git"
   },
-  "author": "Shusui Moyatani",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/syusui-s/esper/issues"
-  },
-  "homepage": "https://github.com/syusui-s/esper#readme",
   "devDependencies": {
-    "eslint": "^6.0.1",
-    "jsdoc": "^3.6.2",
+    "eslint": "^7.5.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "jsdoc": "^3.6.5",
     "marked": "^0.7.0",
-    "typescript": "^3.5.3"
-  }
+    "typescript": "^3.9.7"
+  },
+  "dependencies": {}
 }

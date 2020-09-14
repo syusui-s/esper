@@ -1,9 +1,9 @@
-import ApplicationContainer from './component/application.mjs';
+import ApplicationContainer from './component/application.js';
 import Test from '../test/test.mjs';
 
 if (location.href.match(/\?test/)) { Test(); }
 
-window.addEventListener('load', (_) => {
+window.addEventListener('load', () => {
   document.querySelector('.js-app').appendChild(new ApplicationContainer().render());
 });
 

@@ -1,4 +1,4 @@
-import { DecisionTree } from '../src/lib/algorithm.mjs';
+import { Trie } from '../src/lib/trie.mjs';
 import { StrokeTable, StrokeEntry, StrokeState } from '../src/model/stroke.mjs';
 import { Vocabulary } from '../src/model/vocabulary.mjs';
 
@@ -21,20 +21,20 @@ class Test {
 }
 
 function testDecisionTree(assertEqual) {
-  const decisionTree = new DecisionTree();
-  decisionTree.insert(['a'], 'あ');
-  decisionTree.insert(['i'], 'い');
-  decisionTree.insert(['k', 'a'], 'か');
-  decisionTree.insert(['k', 'i'], 'き');
-  decisionTree.insert(['p', 'y', 'a'], 'ぴゃ');
+  const trie = new Trie();
+  trie.insert(['a'], 'あ');
+  trie.insert(['i'], 'い');
+  trie.insert(['k', 'a'], 'か');
+  trie.insert(['k', 'i'], 'き');
+  trie.insert(['p', 'y', 'a'], 'ぴゃ');
 
-  assertEqual(decisionTree.get(['a']).entry, 'あ');
-  assertEqual(decisionTree.get(['i']).entry, 'い');
-  assertEqual(decisionTree.get(['u']), undefined);
-  assertEqual(decisionTree.get(['k', 'a']).entry, 'か');
-  assertEqual(decisionTree.get(['k', 'i']).entry, 'き');
-  assertEqual(decisionTree.get(['k', 'u']), undefined);
-  assertEqual(decisionTree.get(['p', 'y', 'a']).entry, 'ぴゃ');
+  assertEqual(trie.get(['a']).entry, 'あ');
+  assertEqual(trie.get(['i']).entry, 'い');
+  assertEqual(trie.get(['u']), undefined);
+  assertEqual(trie.get(['k', 'a']).entry, 'か');
+  assertEqual(trie.get(['k', 'i']).entry, 'き');
+  assertEqual(trie.get(['k', 'u']), undefined);
+  assertEqual(trie.get(['p', 'y', 'a']).entry, 'ぴゃ');
 }
 
 function testStrokeTable(assertEqual) {
@@ -47,16 +47,16 @@ function testStrokeTable(assertEqual) {
 
 function testStrokeState(assertEqual) {
   const strokeTable = new StrokeTable({
-    'ko':  new StrokeEntry('ko',  'こ'),
-    'co':  new StrokeEntry('co',  'こ'),
-    'kq':  new StrokeEntry('k,',  'こん'),
-    'cq':  new StrokeEntry('k,',  'こん'),
-    'n':   new StrokeEntry('n',   'ん'),
-    'nn':  new StrokeEntry('nn',  'ん'),
-    'ni':  new StrokeEntry('ni',  'に'),
-    'ti':  new StrokeEntry('ti',  'ち'),
-    'chi': new StrokeEntry('chi', 'ち'),
-    'ha':  new StrokeEntry('ha',  'は'),
+    ko:  new StrokeEntry('ko', 'こ'),
+    co:  new StrokeEntry('co', 'こ'),
+    kq:  new StrokeEntry('k,', 'こん'),
+    cq:  new StrokeEntry('k,', 'こん'),
+    n:   new StrokeEntry('n', 'ん'),
+    nn:  new StrokeEntry('nn', 'ん'),
+    ni:  new StrokeEntry('ni', 'に'),
+    ti:  new StrokeEntry('ti', 'ち'),
+    chi: new StrokeEntry('chi', 'ち'),
+    ha:  new StrokeEntry('ha', 'は'),
   });
 
   const strokeState = new StrokeState(strokeTable);
@@ -67,7 +67,6 @@ function testStrokeState(assertEqual) {
 
     strokeState.reset();
   });
-
 }
 
 function testVocabulary(assertEqual) {
@@ -88,8 +87,8 @@ function testVocabulary(assertEqual) {
   assertEqual(vocab.matchLength('こん'), 2);
   assertEqual(vocab.matchLength('こんに'), 3);
   assertEqual(vocab.matchLength('こんにち'), 4);
-  assertEqual(vocab.matchLength('こんにちは'), 5);
-  assertEqual(vocab.matchLength('こんにちけ'), 0);
+  assertEqual(vocab.matchlength('こんにちは'), 5);
+  assertEqual(vocab.matchlength('こんにちけ'), 0);
 }
 
 export default function test() {

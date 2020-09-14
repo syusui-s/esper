@@ -1,11 +1,10 @@
-/** @module store/settings_store */
-
-import { Emitter } from '../lib/flux.mjs';
+import { Emitter } from '../lib/flux.js';
 
 export default class SettingsStore extends Emitter {
   constructor(emitter) {
     super();
 
+    /** @type {Array<{name: string}>} */
     this.keyboardMaps = [{ name: 'QWERTY' }, { name: 'Dvorak JP' }];
     this.selectedKeyboardMaps = [];
 

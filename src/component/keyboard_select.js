@@ -1,10 +1,10 @@
 /** @module component/keyboard_select */
 
-import { Component } from '../lib/flux.mjs';
+import { Component } from '../lib/flux.js';
 
 export default class KeyboardSelectComponent extends Component {
   template(props) {
-    const html = this.html `
+    const html = this.html`
       <form class="settings">
         <p>
           <label for="keyboard-layouts">使用可能</label>
@@ -19,14 +19,10 @@ export default class KeyboardSelectComponent extends Component {
     `;
 
     const keyboardMaps = html.querySelector('#keyboard-layouts');
-    props.keyboardMaps.forEach((layout) =>
-      keyboardMaps.appendChild(this.html `<option>${layout.name}</option>`)
-    );
+    props.keyboardMaps.forEach((layout) => keyboardMaps.appendChild(this.html`<option>${layout.name}</option>`));
 
     const selectedKeyboardMaps = html.querySelector('#selected-keyboard-layouts');
-    props.selectedKeyboardMaps.forEach((layout) =>
-      selectedKeyboardMaps.appendChild(this.html `<option>${layout.name}</option>`)
-    );
+    props.selectedKeyboardMaps.forEach((layout) => selectedKeyboardMaps.appendChild(this.html`<option>${layout.name}</option>`));
 
     keyboardMaps.addEventListener('change', (ev) => this.actions.SettingsAction.selectedKeyboardMap(ev.target.value));
 
